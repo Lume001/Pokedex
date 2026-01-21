@@ -1,17 +1,22 @@
-package dev.java1.Pokedex;
+package dev.java1.Pokedex.Pokemon;
 
+import dev.java1.Pokedex.Missoes.MissoesModel;
 import jakarta.persistence.*;
-import org.hibernate.annotations.IdGeneratorType;
 
 @Entity
 @Table(name ="tb_Pokedex")
 public class PokedexModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String tipo;
     private int poder;
+
+    @ManyToOne // um pokemon tem uma unica missao
+    @JoinColumn(name = "missoes_id")// Foreing Key ou Chave estrangeira
+    private MissoesModel missoes;
 
     public PokedexModel() {
     }
